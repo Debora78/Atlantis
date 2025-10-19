@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    
+    <title>Atlantis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-custom {
+    color: #000000;
+}
+
+/* ---------------------------------------------------------------- */
+/* OVERLAY SUPERIORE (h1) */
+/* ---------------------------------------------------------------- */
+
+.overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*  text-align: center; */
+    width: 100%;
+    z-index: 10;
+}
+.mainTitle {
+    font-size: 5rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* OVERLAY INFERIORE (h2 e p) */
+/* ---------------------------------------------------------------- */
+
+.overlay-bottom {
+    position: absolute;
+    bottom: 0; /* Lo fissa in basso */
+    left: 0;
+    width: 100%; /* Permette a text-center di funzionare */
+
+    /* La spaziatura dal basso è gestita dal p-5 in HTML */
+}
+.title-shadow {
+    /*  color: #6b6a6a; */
+    /* color: #000000; */
+    /*  text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c; */
+    /*  text-shadow: 2px 2px 0 #ff7f50, 4px 4px 0 #cd5c5c; tramonto*/
+
+    /* Ombra 1 (vicina, luce intensa): Giallo-Oro brillante
+      Ombra 2 (media, diffusione): Arancione caldo
+      Ombra 3 (lontana, bagliore diffuso): Rosso/Marrone scuro per profondità
+      */
+    /* text-shadow: 
+          0 0 5px #FFD700,       Bagliore ravvicinato (Oro) 
+          0 0 15px #FFA500,     Bagliore medio (Arancione) 
+          0 0 30px #FF4500;     Bagliore largo (Arancio-Rosso) */
+
+    /* Puoi usare anche il tuo vecchio formato con colori più caldi: */
+    /* text-shadow: 2px 2px 0 #FFD700, 4px 4px 0 #FF8C00; */
+    /*  text-shadow: 2px 2px 0 #e6e6fa, */
+    /* Lavanda chiaro/Argento pallido 4px 4px 0 #add8e6; /* Celeste chiaro */
+
+    /*  color: #6b6a6a; */
+    /*  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+      #ee61a7 0px 0px 20px, #ee61a7 0px 0px 30px, #ee61a7 0px 0px 40px,
+      #ee3e96 0px 0px 50px, #ee3e96 0px 0px 75px; */
+
+    /* 1. Tipografia e Dimensione */
+
+    /* --- 1. PROPRIETÀ BASE --- */
+    text-transform: uppercase;
+    font-family: "Times New Roman", serif;
+    font-size: 8rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1;
+
+    /* --- 2. GRADIENTE (LUCENTEZZA LATERALE) --- */
+    /* Usiamo un gradiente lineare per un riflesso più uniforme, ma possiamo provare un radiale se preferisci */
+    /* --- 2. GRADIENTE ORO (MASSIMA LUCENTEZZA) --- */
+    background-image: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        /* MASSIMO PUNTO LUCE (Bianco puro) */ #ffd700 10%,
+        /* Oro brillante */ #c9b047 35%,
+        /* Ombra d'oro media (non più bronzo scuro) */ #ffd700 60%,
+        /* Oro brillante */ #ffffff 100% /* MASSIMO PUNTO LUCE */
+    );
+
+    /* 3. CLIPPING E TRASPARENZA (invariate) */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffd700; /* Fallback */
+
+    /* --- 4. TEXT SHADOW (VOLUME 3D SCHIARITO) --- */
+    text-shadow:
+        /* BORDO LUCIDO E CHIAREZZA (Leggermente schiarito) */ 1px
+            1px 0 #fcfa7dff,
+        2px 2px 0 #b29959, 3px 3px 0 #b29959, 4px 4px 0 #947e3d,
+        /* SPESSORE SCURO (Ora un tono oro scuro, non marrone) */ 5px 5px 1px
+            #7d6b33,
+        6px 6px 1px #7d6b33, 7px 7px 1px #7d6b33, 8px 8px 1px #7d6b33,
+        9px 9px 1px #7d6b33,
+        /* OMBRA ESTERNA (invariata) */ 15px 15px 15px rgba(247, 244, 244, 0.7);
+}
+
+.subTitle {
+    font-size: 3rem;
+    letter-spacing: 3px;
+
+    background-image: linear-gradient(
+        90deg,
+        #ffffff 0%; /* MASSIMO PUNTO LUCE (Bianco puro) */ #ffd700 10%,
+        /* Oro brillante */ #c9b047 35%,
+        /* Ombra d'oro media (non più bronzo scuro) */ #ffd700 60%,
+        /* Oro brillante */ #ffffff 100% /* MASSIMO PUNTO LUCE */
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /*  -webkit-text-stroke-width: 1px; */ /* Spessore del contorno */
+    /* -webkit-text-stroke-color: black; */ /* Colore del contorno */
+
+    color: #ffd700; /* Fallback */
+
+    text-shadow: 1px 1px 0 #fcfa7dff, 2px 2px 0 #b29959, 3px 3px 0 #b29959,
+        4px 4px 0 #947e3d,
+        /* SPESSORE SCURO (Ora un tono oro scuro, non marrone) */ 5px 5px 1px
+            #7d6b33,
+        6px 6px 1px #7d6b33, 7px 7px 1px #7d6b33, 8px 8px 1px #7d6b33,
+        9px 9px 1px #7d6b33,
+        /* OMBRA ESTERNA (invariata) */ 15px 15px 15px rgba(247, 244, 244, 0.7);
+}
+
+/** MEDIA QUERIES per sottotitoli*/
+
+/* ------------------------------------------------------------------- */
+/* 1. NUOVO BREAKPOINT PER TABLET LARGHI (768px a 991.98px) */
+/* Questo coprirà schermi come l'iPad Air a 820px e iPad Pro in verticale. */
+@media (max-width: 991.98px) {
+    .subTitle {
+        /* Applica qui le proprietà che vedi nell'immagine a 820px */
+        font-size: 2rem; /* Leggermente più grande del tuo 1rem, per stare a 820px */
+        font-weight: 700;
+        letter-spacing: normal;
+        text-transform: uppercase;
+
+        /* Colore BIANCO e Ombra Scura, con valori leggermente maggiori */
+        background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+        -webkit-text-stroke-width: 0;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 1),
+            /* Ombra più diffusa a 5px */ 0 0 2px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* ------------------------------------------------------------------- */
+/* 2. BREAKPOINT PER TABLET MEDI (Bootstrap 'sm': 576px a 767.98px) */
+/* Questa è la tua media query esistente per tablet più piccoli */
+@media (max-width: 767.98px) {
+    .subTitle {
+        font-size: 1.4rem; /* Leggermente aumentato per una migliore leggibilità a questa dimensione */
+        font-weight: 700;
+        letter-spacing: normal;
+        text-transform: uppercase;
+
+        /* Colore BIANCO e Ombra Scura */
+        background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+        -webkit-text-stroke-width: 0;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 1), 0 0 1px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* ------------------------------------------------------------------- */
+/* 3. BREAKPOINT PER CELLULARE (Bootstrap 'xs': sotto 576px) */
+@media (max-width: 575.98px) {
+    .subTitle {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: normal;
+        text-transform: uppercase;
+
+        /* Colore BIANCO e Ombra Scura */
+        background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+        -webkit-text-stroke-width: 0;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 1), 0 0 1px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/** MEDIA QUERIES per titolo*/
+/* ------------------------------------------------------------------- */
+/* 2. BREAKPOINT PER TABLET (Bootstrap 'sm': max-width 767.98px) */
+@media (max-width: 767.98px) {
+    .mainTitle {
+        font-size: 3.5rem; /* Riduci la dimensione per tablet */
+
+        text-shadow:
+            /* Riduci il volume 3D (Esempio: da 9px a 6px) */ 1px
+                1px 0 #fcfa7dff,
+            2px 2px 0 #b29959, 3px 3px 0 #947e3d, 4px 4px 1px #7d6b33,
+            5px 5px 1px #7d6b33, 6px 6px 1px #7d6b33,
+            /* Riduci l'Ombra Esterna (Esempio: da 15px a 10px) */ 10px 10px
+                10px rgba(247, 244, 244, 0.7);
+    }
+}
+
+/* ------------------------------------------------------------------- */
+/* 3. BREAKPOINT PER CELLULARE (Bootstrap 'xs': max-width 575.98px) */
+@media (max-width: 575.98px) {
+    .mainTitle {
+        font-size: 2.2rem; /* Forte riduzione per cellulare */
+        letter-spacing: normal; /* Rimuovi o riduci molto la spaziatura se eccessiva */
+
+        text-shadow:
+            /* Riduci al minimo il 3D (Esempio: da 6px a 4px) */ 1px
+                1px 0 #fcfa7dff,
+            2px 2px 0 #b29959, 3px 3px 0 #947e3d, 4px 4px 1px #7d6b33,
+            /* Riduci ulteriormente l'Ombra Esterna (Esempio: da 10px a 6px) */
+                6px 6px 6px rgba(247, 244, 244, 0.7);
+    }
+}
+
+
+
+
+
+</style>    
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-12 position-relative">
+                <div class="img-header">
+                    <img class="w-100 img-fluid" src="images/Atlantis.jpeg" alt="Carta atlantica mondiale">
+                </div>
+                <div class="overlay-top  text-center text-white p-5">
+                    <h1 class="mb-5 fw-bold title-shadow mainTitle">Atlantis</h1>
+                </div>
+                <div class="overlay-bottom text-center p-5">
+                    <h2 class="subTitle mb-3 fw-lighter">
+                        Apri le porte del mondo con un click.
+                    </h2>
+                    <p class="subTitle fw-lighter">
+                        Dove le possibilità non hanno confini.
+                    </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+    <!-- FINE HEADER -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+
+</html>
